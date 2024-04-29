@@ -1,4 +1,5 @@
 let currentQuestion = 0;
+
 let questions = [
     {
         'question': 'Was ist ein Byte?',
@@ -69,6 +70,7 @@ function init() {
 function showQuestion() {
     let question = questions[currentQuestion];
 
+    document.getElementById('questionNumber').innerHTML = currentQuestion + 1;
     document.getElementById('questionText').innerHTML = question['question'];
     document.getElementById('answer_1').innerHTML = question['answer_1'];
     document.getElementById('answer_2').innerHTML = question['answer_2'];
