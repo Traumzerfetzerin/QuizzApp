@@ -65,6 +65,7 @@ function init() {
     showQuestion();
 }
 
+
 function showQuestion() {
     let question = questions[currentQuestion];
 
@@ -75,6 +76,7 @@ function showQuestion() {
     document.getElementById('answer_4').innerHTML = question['answer_4'];
 }
 
+
 function answer(selection) {
     let question = questions[currentQuestion];
     let selectedQuestionNumber = selection.slice(-1); // letzter Buchstabe
@@ -82,11 +84,32 @@ function answer(selection) {
 
     if (selectedQuestionNumber == question['right_answer']) {
         document.getElementById(selection).parentNode.classList.add('bg-success');
-        
+
     } else {
         document.getElementById(selection).parentNode.classList.add('bg-danger');
         document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
     }
 
     document.getElementById('nextButton').disabled = false;
+}
+
+
+function nextQuestion() {
+    currentQuestion++; // wird um 1 erhöht
+
+    resetAnswerButton();
+    showQuestion();
+}
+
+
+function resetAnswerButton() {
+    document.getElementById('nextButton').disabled = true;
+    document.getElementById('answer_1').parentNode.classList.remove('bg-danger');
+    document.getElementById('answer_1').parentNode.classList.remove('bg-success');
+    document.getElementById('answer_2').parentNode.classList.remove('bg-danger');
+    document.getElementById('answer_2').parentNode.classList.remove('bg-success');
+    document.getElementById('answer_3').parentNode.classList.remove('bg-danger');
+    document.getElementById('answer_3').parentNode.classList.remove('bg-success');
+    document.getElementById('answer_4').parentNode.classList.remove('bg-danger');
+    document.getElementById('answer_4').parentNode.classList.remove('bg-success');
 }
