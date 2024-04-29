@@ -22,3 +22,11 @@ body {
     padding-top: 23px;
 }
 
+.quiz-answer-card:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.bg-success, .bg-danger {
+    color: white;
+}
