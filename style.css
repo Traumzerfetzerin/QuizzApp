@@ -10,11 +10,11 @@ body {
     align-items: center;
 }
 
-.quiz-card {
+.quizCard {
     width: 30rem;
 }
 
-.question-footer {
+.questionFooter {
     display: flex;
     justify-content: space-between;
     border-top: 1px solid rgba(0, 0, 0, 0.4);
@@ -22,7 +22,7 @@ body {
     padding-top: 23px;
 }
 
-.quiz-answer-card:hover {
+.quizAnswerCard:hover {
     cursor: pointer;
     background-color: rgba(0, 0, 0, 0.5);
 }

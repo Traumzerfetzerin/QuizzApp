@@ -60,7 +60,7 @@ let questions = [
 
 
 function init() {
-    document.getElementById('all-questions').innerHTML = questions.length;
+    document.getElementById('allQuestions').innerHTML = questions.length;
 
     showQuestion();
 }
@@ -78,10 +78,15 @@ function showQuestion() {
 function answer(selection) {
     let question = questions[currentQuestion];
     let selectedQuestionNumber = selection.slice(-1); // letzter Buchstabe
+    let idOfRightAnswer = `answer_${question['right_answer']}`;
 
     if (selectedQuestionNumber == question['right_answer']) {
         document.getElementById(selection).parentNode.classList.add('bg-success');
+        
     } else {
         document.getElementById(selection).parentNode.classList.add('bg-danger');
+        document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
     }
+
+    document.getElementById('nextButton').disabled = false;
 }
