@@ -1,5 +1,7 @@
 let currentQuestion = 0;
 let rigthQuestions = 0;
+let audioSuccess = new Audio('audio/success.mp3');
+let audioLose = new Audio('audio/lose.mp3');
 
 let questions = [
     {
@@ -106,11 +108,13 @@ function answer(selection) {
 
     if (selectedQuestionNumber == question['right_answer']) {
         document.getElementById(selection).parentNode.classList.add('bg-success');
+        audioSuccess.play();
         rigthQuestions++;
 
     } else {
         document.getElementById(selection).parentNode.classList.add('bg-danger');
         document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
+        audioLose.play();
     }
 
     document.getElementById('nextButton').disabled = false;
