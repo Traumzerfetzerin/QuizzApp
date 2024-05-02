@@ -24,13 +24,19 @@
     </nav>
 
     <div class="container">
+
         <div class="card quizCard">
             <img src="img/brainbg.jpg" id="headerImg" class="card-img-top" alt="...">
+
+            <div class="progress" role="progressbar">
+                <div class="progress-bar" id="progressBar" style="width: 25%">0%</div>
+              </div>
 
             <div class="card-body" id="endscreen" style="display: none;">
                 <div class="text-center">Quiz beendet!</div>
 
-                <div class="text-center">du hast <b id="amountOfRightQuestions">xxx</b> fragen von <b id="amountOfQuestions">xxx</b> richtig beantwortet.</div>
+                <div class="text-center">Du hast <b id="amountOfRightQuestions">xxx</b> Fragen von <b
+                        id="amountOfQuestions">xxx</b> richtig beantwortet.</div>
             </div>
 
             <div class="card-body" id="questionBody">

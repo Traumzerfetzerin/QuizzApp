@@ -70,6 +70,7 @@ function init() {
 
 function showQuestion() {
     if (currentQuestion >= questions.length) {
+        // SHOW ENDSCREEN
         document.getElementById('endscreen').style = '';
         document.getElementById('questionBody').style = 'display: none';
 
@@ -78,7 +79,14 @@ function showQuestion() {
 
         document.getElementById('headerImg').src = 'img/brain result.png';
 
-    } else {
+    } else { // SHOW QUESTION
+
+        let percent = (currentQuestion + 1) / questions.length;
+        percent = Math.round(percent * 100);
+
+        document.getElementById('progressBar').innerHTML = `${percent} %`;
+        document.getElementById('progressBar').style = `width: ${percent}%;`;
+
         let question = questions[currentQuestion];
 
         document.getElementById('questionNumber').innerHTML = currentQuestion + 1;
