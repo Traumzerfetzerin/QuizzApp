@@ -137,3 +137,14 @@ function resetAnswerButton() {
     document.getElementById('answer_4').parentNode.classList.remove('bg-success');
 }
 
+
+function restartGame() {
+    document.getElementById('headerImg').src = 'img/brainbg.jpg';
+    document.getElementById('questionBody').style = '';
+    document.getElementById('endscreen').style = 'display: none';
+
+    currentQuestion = 0;
+    rigthQuestions = 0;
+
+    init();
+}
