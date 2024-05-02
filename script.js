@@ -71,33 +71,50 @@ function init() {
 
 
 function showQuestion() {
-    if (currentQuestion >= questions.length) {
-        // SHOW ENDSCREEN
-        document.getElementById('endscreen').style = '';
-        document.getElementById('questionBody').style = 'display: none';
+    if (gameIsOver()) {
+        showEndscreen();
 
-        document.getElementById('amountOfRightQuestions').innerHTML = rigthQuestions;
-        document.getElementById('amountOfQuestions').innerHTML = questions.length;
-
-        document.getElementById('headerImg').src = 'img/brain result.png';
-
-    } else { // SHOW QUESTION
-
-        let percent = (currentQuestion + 1) / questions.length;
-        percent = Math.round(percent * 100);
-
-        document.getElementById('progressBar').innerHTML = `${percent} %`;
-        document.getElementById('progressBar').style = `width: ${percent}%;`;
-
-        let question = questions[currentQuestion];
-
-        document.getElementById('questionNumber').innerHTML = currentQuestion + 1;
-        document.getElementById('questionText').innerHTML = question['question'];
-        document.getElementById('answer_1').innerHTML = question['answer_1'];
-        document.getElementById('answer_2').innerHTML = question['answer_2'];
-        document.getElementById('answer_3').innerHTML = question['answer_3'];
-        document.getElementById('answer_4').innerHTML = question['answer_4'];
+    } else {
+        updateProgressbar();
+        updateToNextQuestion();
     }
+}
+
+
+function gameIsOver() {
+    return currentQuestion >= questions.length;
+}
+
+
+function updateProgressbar() {
+    let percent = (currentQuestion + 1) / questions.length;
+    percent = Math.round(percent * 100);
+
+    document.getElementById('progressBar').innerHTML = `${percent} %`;
+    document.getElementById('progressBar').style = `width: ${percent}%;`;
+}
+
+
+function updateToNextQuestion() {
+    let question = questions[currentQuestion];
+
+    document.getElementById('questionNumber').innerHTML = currentQuestion + 1;
+    document.getElementById('questionText').innerHTML = question['question'];
+    document.getElementById('answer_1').innerHTML = question['answer_1'];
+    document.getElementById('answer_2').innerHTML = question['answer_2'];
+    document.getElementById('answer_3').innerHTML = question['answer_3'];
+    document.getElementById('answer_4').innerHTML = question['answer_4'];
+}
+
+
+function showEndscreen() {
+    document.getElementById('endscreen').style = '';
+    document.getElementById('questionBody').style = 'display: none';
+
+    document.getElementById('amountOfRightQuestions').innerHTML = rigthQuestions;
+    document.getElementById('amountOfQuestions').innerHTML = questions.length;
+
+    document.getElementById('headerImg').src = 'img/brain result.png';
 }
 
 
@@ -106,7 +123,7 @@ function answer(selection) {
     let selectedQuestionNumber = selection.slice(-1); // letzter Buchstabe
     let idOfRightAnswer = `answer_${question['right_answer']}`;
 
-    if (selectedQuestionNumber == question['right_answer']) {
+    if (rightAnswerSelected(selectedQuestionNumber, question)) {
         document.getElementById(selection).parentNode.classList.add('bg-success');
         audioSuccess.play();
         rigthQuestions++;
@@ -118,6 +135,11 @@ function answer(selection) {
     }
 
     document.getElementById('nextButton').disabled = false;
+}
+
+
+function rightAnswerSelected(selectedQuestionNumber, question) {
+    return selectedQuestionNumber == question['right_answer'];
 }
 
 
